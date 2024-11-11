@@ -25,7 +25,7 @@ view: primary_key_and_count {
   # }
 
   dimension: primary_key {
-    label: "{{view_label._sql}} Primary Key"
+    label: "{{view_label._sql}} ID"
     hidden: yes
     primary_key: yes
     # sql: ${id} ;;
