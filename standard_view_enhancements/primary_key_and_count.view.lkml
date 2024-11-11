@@ -5,7 +5,7 @@
 view: primary_key_and_count {
   dimension: view_label {hidden:yes
     sql:
-    {% assign the_view_label = _view._name | replace: '_',' ' | capitalize | append: ' ID' %}
+    {% assign the_view_label = _view._name | replace: '_',' ' | capitalize %}
     {%assign final_view_label = '' %}
     {% assign words = the_view_label | split: ' ' %}
     {% for word in words %}
@@ -20,31 +20,17 @@ view: primary_key_and_count {
   }
 
   dimension: id {
-    # hidden:yes
-    # label: "{% assign the_view_label = _view._name | replace: '_',' ' | capitalize | append: ' ID' %}
-    # {%assign final_view_label = '' %}
-    # {% assign words = the_view_label | split: ' ' %}
-    # {% for word in words %}
-    #   {%assign final_view_label = final_view_label | append: word %}
-    #   {% if word == words.last %}
-    #   {% else %}
-    #     {%assign final_view_label = final_view_label | append: ' ' %}
-    #   {% endif %}
-    # {% endfor %}
-    # {{final_view_label}}
-    # "
-    label: "{{view_label.sql}}"
-
+    label: "{{view_label.sql}} ID"
   }
 
   dimension: primary_key {
-    label: "{{_view._name}} Primary Key"
+    label: "{{view_label.sql}} Primary Key"
     hidden: yes
     primary_key: yes
     sql: ${id} ;;
   }
   measure: count {
-    label: "{{_view._name}} Count"
+    label: "{{view_label.sql}} Count"
     filters: [primary_key: "-NULL"]
   }
 }
