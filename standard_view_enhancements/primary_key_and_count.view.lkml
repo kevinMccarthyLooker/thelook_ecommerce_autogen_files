@@ -3,16 +3,37 @@
 #add default disambiguation to labels
 
 view: primary_key_and_count {
-  dimension: id {
-    # hidden:yes
-    label: "{% assign the_view_label = _view._name | replace: '_',' ' | capitalize | append: ' ID' %}
+  dimension: view_label {hidden:yes
+    sql:
+    {% assign the_view_label = _view._name | replace: '_',' ' | capitalize | append: ' ID' %}
     {%assign final_view_label = '' %}
     {% assign words = the_view_label | split: ' ' %}
     {% for word in words %}
       {%assign final_view_label = final_view_label | append: word %}
+      {% if word == words.last %}
+      {% else %}
+        {%assign final_view_label = final_view_label | append: ' ' %}
+      {% endif %}
     {% endfor %}
     {{final_view_label}}
-    "
+    ;;
+  }
+
+  dimension: id {
+    # hidden:yes
+    # label: "{% assign the_view_label = _view._name | replace: '_',' ' | capitalize | append: ' ID' %}
+    # {%assign final_view_label = '' %}
+    # {% assign words = the_view_label | split: ' ' %}
+    # {% for word in words %}
+    #   {%assign final_view_label = final_view_label | append: word %}
+    #   {% if word == words.last %}
+    #   {% else %}
+    #     {%assign final_view_label = final_view_label | append: ' ' %}
+    #   {% endif %}
+    # {% endfor %}
+    # {{final_view_label}}
+    # "
+    label: "{{view_label.sql}}"
 
   }
 
