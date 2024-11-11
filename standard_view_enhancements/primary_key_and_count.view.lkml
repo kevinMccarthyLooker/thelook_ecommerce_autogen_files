@@ -20,17 +20,17 @@ view: primary_key_and_count {
   }
 
   dimension: id {
-    label: "{{view_label.sql}} ID"
+    label: "{{view_label._sql}} ID"
   }
 
   dimension: primary_key {
-    label: "{{view_label.sql}} Primary Key"
+    label: "{{view_label._sql}} Primary Key"
     hidden: yes
     primary_key: yes
     sql: ${id} ;;
   }
   measure: count {
-    label: "{{view_label.sql}} Count"
+    label: "{{view_label._sql}} Count"
     filters: [primary_key: "-NULL"]
   }
 }
