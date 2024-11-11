@@ -4,6 +4,7 @@ include: "/*/products.view"
 include: "/*/users.view"
 
 explore: order_items {
+  from: order_items_view__order_items_explore
   join: orders {
     sql: ${order_items.order_id}=${orders.order_id} ;;
   }
@@ -13,4 +14,14 @@ explore: order_items {
   join: products {
     sql: ${order_items.product_id}=${products.id} ;;
   }
+}
+
+
+view: order_items_view__order_items_explore {
+  extends: [order_items]
+  dimension: id {hidden:yes}
+  dimension: inventory_item_id {hidden:yes}
+  dimension: order_id {hidden:yes}
+  dimension: product_id {hidden:yes}
+  dimension: user_id {hidden:yes}
 }
