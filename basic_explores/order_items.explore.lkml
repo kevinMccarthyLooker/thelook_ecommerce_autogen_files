@@ -23,7 +23,6 @@ explore: order_items {
 #improvements for this specific explore, e.g. remove duplicate fields
 view: order_items_view__order_items_explore {
   extends: [order_items]
-  dimension: id {label:"Order Item ID"}
 
   #hide foreign keys from field picker
   dimension: inventory_item_id {hidden:yes}
@@ -41,4 +40,5 @@ view: order_items_view__order_items_explore {
 }
 view: orders_view__order_items_explore {
   extends: [orders]
+  dimension: order_id {hidden:yes} #hide this and instead use the standard 'ID' field
 }

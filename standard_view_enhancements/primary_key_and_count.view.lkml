@@ -3,7 +3,8 @@
 #add default disambiguation to labels
 
 view: primary_key_and_count {
-  dimension: view_label {hidden:yes
+  dimension: view_label {
+    hidden:yes
     sql:
     {% assign the_view_label = _view._name | replace: '_',' ' | capitalize %}
     {%assign final_view_label = '' %}
@@ -19,15 +20,15 @@ view: primary_key_and_count {
     ;;
   }
 
-  dimension: id {
-    label: "{{view_label._sql}} ID"
-  }
+  # dimension: id {
+  #   label: "{{view_label._sql}} ID"
+  # }
 
   dimension: primary_key {
     label: "{{view_label._sql}} Primary Key"
     hidden: yes
     primary_key: yes
-    sql: ${id} ;;
+    # sql: ${id} ;;
   }
   measure: count {
     label: "{{view_label._sql}} Count"
