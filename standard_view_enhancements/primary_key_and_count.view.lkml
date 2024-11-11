@@ -4,8 +4,15 @@
 
 view: primary_key_and_count {
   dimension: id {
-    hidden:yes
-    label: "{{_view._name}} ID"
+    # hidden:yes
+    label: "{% assign the_view_label = _view._name | replace: '_',' ' | capitalize | append: ' ID' %}
+    {%assign final_view_label = '' %}
+    {% assign words = the_view_label | split: ' ' %}
+    {% for word in words %}
+      {%assign final_view_label = final_view_label | concat: word %}
+    {% endfor %}
+    {{final_view_label}}
+    "
   }
 
   dimension: primary_key {
