@@ -29,7 +29,12 @@ view: order_items_view__order_items_explore {
   dimension: user_id {hidden:yes}
 
   #hide fields that are on other views and fit better in those other views
-  dimension_group: created_at {hidden:yes}
+  dimension_group: created_at {hidden:yes} #present in orders view
+  dimension_group: delivered_at {hidden:yes} #present in orders view
+  dimension_group: returned_at {hidden:yes} #present in orders view
+  dimension_group: shipped_at {hidden:yes} #present in orders view
+
+  dimension: status {hidden:yes} #present in orders view
 }
 view: orders_view__order_items_explore {
   extends: [orders]
