@@ -4,4 +4,9 @@ view: +order_items {
   extends: [primary_key_and_count]
   dimension: primary_key {sql:${id};;}
   dimension: id {hidden:yes}
+
+  measure: total_sale_price {
+    type: sum
+    sql: ${sale_price} ;;
+  }
 }
