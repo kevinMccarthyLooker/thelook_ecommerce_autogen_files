@@ -9,5 +9,5 @@ view: +orders {
   dimension: gender {hidden:yes}
 
   #separate keys, etc, for simple set of fields
-  dimension: user_id         {view_label: "Orders (Tech Fields)" hidden:yes}
+  dimension: user_id         {group_label: "ID Fields" hidden:yes}
 }
